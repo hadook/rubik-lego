@@ -19,11 +19,26 @@ class Cube():
                       ["B", "B2", "B'"],
                       ["L", "L2", "L'"],
                       ["R", "R2", "R'"]]
+        
+    # constructs a cube instance from a dictionary of face arrays
+    @classmethod
+    def from_dict(cls, faces: dict):
+        cube = Cube()
+        cube.up = faces['up']
+        cube.down = faces['down']
+        cube.front = faces['front']
+        cube.back = faces['back']
+        cube.left = faces['left']
+        cube.right = faces['right']
+        return cube
 
+    # returns a list of face arrays
     @property
     def faces(self) -> list:
         return [self.up, self.left, self.front, self.right, self.back, self.down]
 
+    # cube is solved if each face has all tiles of the same color
+    @property
     def is_solved(self) -> bool:
         for face in self.faces:
             center = face[1][1]
@@ -33,6 +48,7 @@ class Cube():
                         return False
         return True
     
+    # scrambles the cube by applying a number of random moves
     def scramble(self, num_moves: int) -> list:
         moves = []
         last = None
@@ -204,6 +220,7 @@ class Cube():
                 for _ in range(3):
                     self.rotate("R")
 
+    # returns a single face after clockwise rotation was applied to it
     @staticmethod
     def get_rotated_face(face: list) -> list:
         rotated_face = [['' for _ in range(3)] for _ in range(3)]
