@@ -21,10 +21,10 @@ class Cube():
                       "R", "R2", "R'"]
 
     @property
-    def faces(self):
+    def faces(self) -> list:
         return [self.up, self.left, self.front, self.right, self.back, self.down]
 
-    def is_solved(self):
+    def is_solved(self) -> bool:
         for face in self.faces:
             center = face[1][1]
             for i in range(3):
@@ -33,7 +33,7 @@ class Cube():
                         return False
         return True
     
-    def scramble(self, num_moves):
+    def scramble(self, num_moves: int) -> list:
         moves = []
         for _ in range(num_moves):
             move = random.choice(self.moves)
@@ -42,7 +42,7 @@ class Cube():
         return moves
             
     # rotate one of the faces according to the parameter
-    def rotate(self, move):
+    def rotate(self, move: str) -> None:
         match move:
             
             case "U":
@@ -196,7 +196,7 @@ class Cube():
                     self.rotate("R")
 
     @staticmethod
-    def get_rotated_face(face):
+    def get_rotated_face(face: list) -> list:
         rotated_face = [['' for _ in range(3)] for _ in range(3)]
         for i in range(3):
             for j in range(3):
@@ -204,7 +204,7 @@ class Cube():
         return rotated_face
 
     # prints rubik cube face colors in a grid
-    def print(self, face=None):
+    def print(self, face: str=None) -> None:
         if face is not None:
             face = getattr(self, face)
             for i in range(3):
