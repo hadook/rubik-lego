@@ -36,12 +36,13 @@ class Cube():
     def scramble(self, num_moves: int) -> list:
         moves = []
         last = None
-        
+
         for _ in range(num_moves):
             # select from available moves (different than last)
             moveset = random.choice(self.moves)
             while moveset == last:
                 moveset = random.choice(self.moves)
+            last = moveset
             move = random.choice(moveset)
 
             # apply move to cube
