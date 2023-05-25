@@ -1,3 +1,5 @@
+import random
+
 
 """This class represents a Rubik's cube"""
 class Cube():
@@ -10,6 +12,13 @@ class Cube():
         self.back   = [['B' for _ in range(3)] for _ in range(3)]
         self.left   = [['O' for _ in range(3)] for _ in range(3)]
         self.right  = [['R' for _ in range(3)] for _ in range(3)]
+        
+        self.moves = ["U", "U2", "U'",
+                      "D", "D2", "D'",
+                      "F", "F2", "F'",
+                      "B", "B2", "B'",
+                      "L", "L2", "L'",
+                      "R", "R2", "R'"]
 
     @property
     def faces(self):
@@ -23,6 +32,14 @@ class Cube():
                     if face[i][j] != center:
                         return False
         return True
+    
+    def scramble(self, num_moves):
+        moves = []
+        for _ in range(num_moves):
+            move = random.choice(self.moves)
+            self.rotate(move)
+            moves.append(move)
+        return moves
             
     # rotate one of the faces according to the parameter
     def rotate(self, move):
