@@ -13,12 +13,12 @@ class Cube():
         self.left   = [['O' for _ in range(3)] for _ in range(3)]
         self.right  = [['R' for _ in range(3)] for _ in range(3)]
         
-        self.moves = ["U", "U2", "U'",
-                      "D", "D2", "D'",
-                      "F", "F2", "F'",
-                      "B", "B2", "B'",
-                      "L", "L2", "L'",
-                      "R", "R2", "R'"]
+        self.moves = [["U", "U2", "U'"],
+                      ["D", "D2", "D'"],
+                      ["F", "F2", "F'"],
+                      ["B", "B2", "B'"],
+                      ["L", "L2", "L'"],
+                      ["R", "R2", "R'"]]
 
     @property
     def faces(self) -> list:
@@ -35,8 +35,16 @@ class Cube():
     
     def scramble(self, num_moves: int) -> list:
         moves = []
+        last = None
+        
         for _ in range(num_moves):
-            move = random.choice(self.moves)
+            # select from available moves (different than last)
+            moveset = random.choice(self.moves)
+            while moveset == last:
+                moveset = random.choice(self.moves)
+            move = random.choice(moveset)
+
+            # apply move to cube
             self.rotate(move)
             moves.append(move)
         return moves
