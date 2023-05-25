@@ -11,6 +11,19 @@ class Cube():
         self.left   = [['O' for _ in range(3)] for _ in range(3)]
         self.right  = [['R' for _ in range(3)] for _ in range(3)]
 
+    @property
+    def faces(self):
+        return [self.up, self.left, self.front, self.right, self.back, self.down]
+
+    def is_solved(self):
+        for face in self.faces:
+            center = face[1][1]
+            for i in range(3):
+                for j in range(3):
+                    if face[i][j] != center:
+                        return False
+        return True
+            
     # rotate one of the faces according to the parameter
     def rotate(self, move):
         match move:
@@ -193,4 +206,3 @@ class Cube():
             print(blank, self.down[1], blank, blank)
             print(blank, self.down[2], blank, blank)
             print()
-
