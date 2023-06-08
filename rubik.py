@@ -47,6 +47,10 @@ class Cube():
                     if face[i][j] != center:
                         return False
         return True
+
+    # DFS recurrence to solve the cube
+    def solve(self, history: list, max_moves: int = 60) -> list:
+        pass
     
     # scrambles the cube by applying a number of random moves
     def scramble(self, num_moves: int) -> list:
