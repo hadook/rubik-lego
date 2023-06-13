@@ -233,23 +233,18 @@ class Cube():
                 rotated_face[j][2 - i] = face[i][j]
         return rotated_face
 
-    # prints rubik cube face colors in a grid
-    def print(self, face: str=None) -> None:
-        if face is not None:
-            face = getattr(self, face)
-            for i in range(3):
-                print(face[i])
-        else:
-            blank = ' ' * 15
-            print(blank, self.up[0], blank, blank)
-            print(blank, self.up[1], blank, blank)
-            print(blank, self.up[2], blank, blank)
-            # print(blank, blank, blank, blank)
-            print(self.left[0], self.front[0], self.right[0], self.back[0])
-            print(self.left[1], self.front[1], self.right[1], self.back[1])
-            print(self.left[2], self.front[2], self.right[2], self.back[2])
-            # print(blank, blank, blank, blank)
-            print(blank, self.down[0], blank, blank)
-            print(blank, self.down[1], blank, blank)
-            print(blank, self.down[2], blank, blank)
-            print()
+    # returns a user-friendly string representation of a cube object
+    def __str__(self):
+        blank = ' ' * 15
+        lines = [
+            ' '.join([blank, str(self.up[0]), blank, blank]),
+            ' '.join([blank, str(self.up[1]), blank, blank]),
+            ' '.join([blank, str(self.up[2]), blank, blank]),
+            ' '.join([str(self.left[0]), str(self.front[0]), str(self.right[0]), str(self.back[0])]),
+            ' '.join([str(self.left[1]), str(self.front[1]), str(self.right[1]), str(self.back[1])]),
+            ' '.join([str(self.left[2]), str(self.front[2]), str(self.right[2]), str(self.back[2])]),
+            ' '.join([blank, str(self.down[0]), blank, blank]),
+            ' '.join([blank, str(self.down[1]), blank, blank]),
+            ' '.join([blank, str(self.down[2]), blank, blank])
+        ]
+        return '\n'.join(lines)
