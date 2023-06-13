@@ -24,12 +24,12 @@ class Cube():
     @classmethod
     def from_dict(cls, faces: dict):
         cube = Cube()
-        cube.up = faces['up']
-        cube.down = faces['down']
-        cube.front = faces['front']
-        cube.back = faces['back']
-        cube.left = faces['left']
-        cube.right = faces['right']
+        cube.up = copy.deepcopy(faces['up'])
+        cube.down = copy.deepcopy(faces['down'])
+        cube.front = copy.deepcopy(faces['front'])
+        cube.back = copy.deepcopy(faces['back'])
+        cube.left = copy.deepcopy(faces['left'])
+        cube.right = copy.deepcopy(faces['right'])
         return cube
 
     # returns a list of face arrays
