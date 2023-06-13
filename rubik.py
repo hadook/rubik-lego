@@ -19,7 +19,18 @@ class Cube():
         self.back   = [['B' for _ in range(3)] for _ in range(3)]
         self.left   = [['O' for _ in range(3)] for _ in range(3)]
         self.right  = [['R' for _ in range(3)] for _ in range(3)]
-        
+    
+    # returns a new cube object that is a copy of the current object
+    def copy(self):
+        cube = Cube()
+        cube.up = copy.deepcopy(self.up)
+        cube.down = copy.deepcopy(self.down)
+        cube.front = copy.deepcopy(self.front)
+        cube.back = copy.deepcopy(self.back)
+        cube.left = copy.deepcopy(self.left)
+        cube.right = copy.deepcopy(self.right)
+        return cube
+
     # constructs a cube instance from a dictionary of face arrays
     @classmethod
     def from_dict(cls, faces: dict):
