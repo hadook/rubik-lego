@@ -76,7 +76,7 @@ class Cube():
             
             case "U":
                 # rotate face itself
-                self.up = self.get_rotated_face(self.up)
+                self.up = self.__get_rotated_face(self.up)
                 
                 # adjust adjacent faces
                 (
@@ -93,7 +93,7 @@ class Cube():
 
             case "D":
                 # rotate face itself
-                self.down = self.get_rotated_face(self.down)
+                self.down = self.__get_rotated_face(self.down)
                 
                 # adjust adjacent faces
                 (
@@ -110,7 +110,7 @@ class Cube():
             
             case "F":
                 # rotate face itself
-                self.front = self.get_rotated_face(self.front)
+                self.front = self.__get_rotated_face(self.front)
                 
                 # adjust adjacent faces
                 (
@@ -127,7 +127,7 @@ class Cube():
             
             case "B":
                 # rotate face itself
-                self.back = self.get_rotated_face(self.back)
+                self.back = self.__get_rotated_face(self.back)
                 
                 # adjust adjacent faces
                 (
@@ -144,7 +144,7 @@ class Cube():
             
             case "L":
                 # rotate face itself
-                self.left = self.get_rotated_face(self.left)
+                self.left = self.__get_rotated_face(self.left)
                 
                 # adjust adjacent faces
                 (
@@ -161,7 +161,7 @@ class Cube():
             
             case "R":
                 # rotate face itself
-                self.right = self.get_rotated_face(self.right)
+                self.right = self.__get_rotated_face(self.right)
                 
                 # adjust adjacent faces
                 (
@@ -226,7 +226,7 @@ class Cube():
 
     # returns a single face after clockwise rotation was applied to it
     @staticmethod
-    def get_rotated_face(face: list) -> list:
+    def __get_rotated_face(face: list) -> list:
         rotated_face = [['' for _ in range(3)] for _ in range(3)]
         for i in range(3):
             for j in range(3):
