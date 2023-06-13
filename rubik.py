@@ -1,8 +1,15 @@
 import random
+import copy
 
 
 """This class represents a Rubik's cube"""
 class Cube():
+    moves = ["U", "U2", "U'",
+            "D", "D2", "D'",
+            "F", "F2", "F'",
+            "B", "B2", "B'",
+            "L", "L2", "L'",
+            "R", "R2", "R'"]
     
     # initializes cube with starting colors
     def __init__(self) -> None:
@@ -12,13 +19,6 @@ class Cube():
         self.back   = [['B' for _ in range(3)] for _ in range(3)]
         self.left   = [['O' for _ in range(3)] for _ in range(3)]
         self.right  = [['R' for _ in range(3)] for _ in range(3)]
-        
-        self.moves = [["U", "U2", "U'"],
-                      ["D", "D2", "D'"],
-                      ["F", "F2", "F'"],
-                      ["B", "B2", "B'"],
-                      ["L", "L2", "L'"],
-                      ["R", "R2", "R'"]]
         
     # constructs a cube instance from a dictionary of face arrays
     @classmethod
