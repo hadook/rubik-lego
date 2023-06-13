@@ -66,12 +66,12 @@ class Cube():
             move = random.choice(moveset)
 
             # apply move to cube
-            self.rotate(move)
+            self.rotate_ip(move)
             moves.append(move)
         return moves
             
     # rotate one of the faces according to the parameter
-    def rotate(self, move: str) -> None:
+    def rotate_ip(self, move: str) -> None:
         match move:
             
             case "U":
@@ -178,51 +178,51 @@ class Cube():
 
             case "U2":
                 for _ in range(2):
-                    self.rotate("U")
+                    self.rotate_ip("U")
 
             case "D2":
                 for _ in range(2):
-                    self.rotate("D")
+                    self.rotate_ip("D")
 
             case "F2":
                 for _ in range(2):
-                    self.rotate("F")
+                    self.rotate_ip("F")
 
             case "B2":
                 for _ in range(2):
-                    self.rotate("B")
+                    self.rotate_ip("B")
 
             case "L2":
                 for _ in range(2):
-                    self.rotate("L")
+                    self.rotate_ip("L")
 
             case "R2":
                 for _ in range(2):
-                    self.rotate("R")
+                    self.rotate_ip("R")
 
             case "U'":
                 for _ in range(3):
-                    self.rotate("U")
+                    self.rotate_ip("U")
 
             case "D'":
                 for _ in range(3):
-                    self.rotate("D")
+                    self.rotate_ip("D")
 
             case "F'":
                 for _ in range(3):
-                    self.rotate("F")
+                    self.rotate_ip("F")
 
             case "B'":
                 for _ in range(3):
-                    self.rotate("B")
+                    self.rotate_ip("B")
 
             case "L'":
                 for _ in range(3):
-                    self.rotate("L")
+                    self.rotate_ip("L")
 
             case "R'":
                 for _ in range(3):
-                    self.rotate("R")
+                    self.rotate_ip("R")
 
     # returns a single face after clockwise rotation was applied to it
     @staticmethod
