@@ -115,8 +115,14 @@ class Cube():
             self.rotate_ip(move)
             history.append(move)
         return history
-            
-    # rotate one of the faces according to the parameter
+    
+    # rotate cube and return a new cube object (single face rotation)
+    def rotate(self, move: str):
+        cube = self.copy()
+        cube.rotate_ip(move)
+        return cube
+
+    # rotate cube in place (single face rotation)
     def rotate_ip(self, move: str) -> None:
         match move:
             
