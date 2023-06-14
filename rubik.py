@@ -105,23 +105,16 @@ class Cube():
         pass
     
     # scrambles the cube by applying a number of random moves
-    # TODO
     def scramble(self, num_moves: int) -> list:
-        moves = []
-        last = None
-
+        history = []
         for _ in range(num_moves):
-            # select from available moves (different than last)
-            moveset = random.choice(self.moves)
-            while moveset == last:
-                moveset = random.choice(self.moves)
-            last = moveset
-            move = random.choice(moveset)
-
-            # apply move to cube
+            move = random.choice(self.moves)
+            if len(history) != 0:
+                while move[0:1] == history[len(history)-1][0:1]:
+                    move = random.choice(self.moves)
             self.rotate_ip(move)
-            moves.append(move)
-        return moves
+            history.append(move)
+        return history
             
     # rotate one of the faces according to the parameter
     def rotate_ip(self, move: str) -> None:
