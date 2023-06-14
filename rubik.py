@@ -31,7 +31,47 @@ class Cube():
         cube.right = copy.deepcopy(self.right)
         return cube
 
-    # constructs a cube instance from a dictionary of face arrays
+    # constructs a cube instance from another cube object
+    @classmethod
+    def from_cube(cls, other):
+        cube = Cube()
+        cube.up = copy.deepcopy(other.up)
+        cube.down = copy.deepcopy(other.down)
+        cube.front = copy.deepcopy(other.front)
+        cube.back = copy.deepcopy(other.back)
+        cube.left = copy.deepcopy(other.left)
+        cube.right = copy.deepcopy(other.right)
+        return cube
+    
+    # constructs a cube instance from string
+    @classmethod
+    def from_string(cls, colors: str):
+        if len(colors) != 54:
+            raise ValueError(f'Cube class constructor from_string expected string argument of length 54, got {len(colors)} instead.')
+        
+        cube = Cube()
+        for num_face, face in enumerate(cube.faces):
+            subset = colors[num_face*9:(num_face+1)*9]
+            for i in range(3):
+                for j in range(3):
+                    face[i][j] = subset[i*3+j:i*3+j+1]
+        return cube
+
+    # constructs a cube instance from list
+    @classmethod
+    def from_list(cls, colors: list):
+        if len(colors) != 54:
+            raise ValueError(f'Cube class constructor from_list expected list argument of length 54, got {len(colors)} instead.')
+        
+        cube = Cube()
+        for num_face, face in enumerate(cube.faces):
+            subset = colors[num_face*9:(num_face+1)*9]
+            for i in range(3):
+                for j in range(3):
+                    face[i][j] = subset[i*3+j]
+        return cube
+
+    # constructs a cube instance from dictionary
     @classmethod
     def from_dict(cls, faces: dict):
         cube = Cube()
