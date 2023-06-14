@@ -101,7 +101,10 @@ class Cube():
 
     # return a list of possible solutions (using DFS recurrence)
     def solutions(self, max_moves: int = 30) -> list:
-        pass
+        solutions = []
+        history = []
+
+        return solutions
 
     # return best solution (using DFS recurrence)
     def solve(self, max_moves: int = 30) -> list:
@@ -278,6 +281,17 @@ class Cube():
             case "R'":
                 for _ in range(3):
                     self.rotate_ip("R")
+
+    # apply a set of rotations, return a new cube object
+    def rotations(self, moves: list):
+        cube = self.copy()
+        cube.rotations_ip(moves)
+        return cube
+
+    # apply a set of rotations in place
+    def rotations_ip(self, moves: str) -> None:
+        for move in moves:
+            self.rotate_ip(move)
 
     # returns a single face after clockwise rotation was applied to it
     @staticmethod
