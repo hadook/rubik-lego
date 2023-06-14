@@ -99,9 +99,12 @@ class Cube():
                         return False
         return True
 
-    # DFS recurrence to solve the cube
-    # TODO
-    def solve(self, history: list, max_moves: int = 60) -> list:
+    # return a list of possible solutions (using DFS recurrence)
+    def solutions(self, max_moves: int = 30) -> list:
+        pass
+
+    # return best solution (using DFS recurrence)
+    def solve(self, max_moves: int = 30) -> list:
         pass
     
     # scrambles the cube by applying a number of random moves
