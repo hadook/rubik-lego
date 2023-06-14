@@ -99,66 +99,10 @@ class Cube():
                         return False
         return True
 
-    # return a list of possible solutions
-    def solutions(self, max_moves: int = 30) -> list:
-        solutions = []
-        history = []
-        self.__try_solve(self.copy(), solutions, history, max_moves, stop_on_first=False)
-        return solutions
+    # find solution using BFS tree search
+    def solve(self) -> list:
+        queue = []
 
-    # return first solution found
-    def solve(self, max_moves: int = 30) -> list:
-        solutions = []
-        history = []
-        self.__try_solve(self.copy(), solutions, history, max_moves, stop_on_first=True)
-        
-        if len(solutions) > 0:
-            return solutions[0]
-        else:
-            return None
-
-    # attempts to recursively solve the given cube (uses DFS recurrence)
-    def __try_solve(self, cube: 'Cube', solutions: list, history: list, max_moves: int, stop_on_first: bool = True) -> None:
-
-        # base scenarios, cube is solved or max recurrence depth reached
-        if stop_on_first and len(solutions)>0:
-            return
-        if cube.is_solved:
-            solutions.append(history.copy())
-            return
-        if max_moves == 0:
-            return
-
-        # try rotations
-        last = ''
-        if len(history) > 0:
-            last = history[-1][:1]
-        
-        if last != 'U':
-            self.__try_solve(cube.rotate("U"), solutions, [*history, "U"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("U2"), solutions, [*history, "U2"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("U'"), solutions, [*history, "U'"], max_moves-1, stop_on_first)
-        if last != 'D':
-            self.__try_solve(cube.rotate("D"), solutions, [*history, "D"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("D2"), solutions, [*history, "D2"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("D'"), solutions, [*history, "D'"], max_moves-1, stop_on_first)
-        if last != 'F':
-            self.__try_solve(cube.rotate("F"), solutions, [*history, "F"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("F2"), solutions, [*history, "F2"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("F'"), solutions, [*history, "F'"], max_moves-1, stop_on_first)
-        if last != 'B':
-            self.__try_solve(cube.rotate("B"), solutions, [*history, "B"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("B2"), solutions, [*history, "B2"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("B'"), solutions, [*history, "B'"], max_moves-1, stop_on_first)
-        if last != 'L':
-            self.__try_solve(cube.rotate("L"), solutions, [*history, "L"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("L2"), solutions, [*history, "L2"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("L'"), solutions, [*history, "L'"], max_moves-1, stop_on_first)
-        if last != 'R':
-            self.__try_solve(cube.rotate("R"), solutions, [*history, "R"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("R2"), solutions, [*history, "R2"], max_moves-1, stop_on_first)
-            self.__try_solve(cube.rotate("R'"), solutions, [*history, "R'"], max_moves-1, stop_on_first)
-    
     # scrambles the cube by applying a number of random moves
     def scramble(self, num_moves: int) -> list:
         history = []
